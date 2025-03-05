@@ -1,40 +1,34 @@
+import ApiLoginPage from "../pageObjects/apiLoginPage";
+
 describe("API Login Tests", () => {
-  let validUser, invalidUsers;
+  let validUser, invalidUsers, expiresInMins;
 
   before(() => {
-    cy.fixture("loginData").then((data) => {
+    cy.fixture("loginDataAPI").then((data) => {
       validUser = data.validUser;
       invalidUsers = data.invalidUsers;
+      expiresInMins = data.expiresInMins;
     });
   });
 
   it("Successful API login", () => {
-    cy.request({
-      method: "POST",
-      url: "https://dummyjson.com/auth/login",
-      body: {
-        username: validUser.username,
-        password: validUser.password,
-      },
-    }).then((response) => {
+    ApiLoginPage.login(
+      validUser.username,
+      validUser.password,
+      expiresInMins
+    ).then((response) => {
       expect(response.status).to.eq(200);
-      expect(response.body).to.have.property("token");
+      expect(response.body).to.have.property("accessToken"); // Check if token is returned
     });
   });
 
   it("Failed API login with invalid credentials", () => {
     invalidUsers.forEach((user) => {
-      cy.request({
-        method: "POST",
-        url: "https://dummyjson.com/auth/login",
-        failOnStatusCode: false,
-        body: {
-          username: user.username,
-          password: user.password,
-        },
-      }).then((response) => {
-        expect(response.status).to.eq(400);
-      });
+      ApiLoginPage.login(user.username, user.password, expiresInMins).then(
+        (response) => {
+          expect(response.status).to.eq(400);
+        }
+      );
     });
   });
 });
