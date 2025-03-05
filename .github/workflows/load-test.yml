@@ -4,26 +4,16 @@ on:
   workflow_dispatch: # Manual trigger
 
 jobs:
-  run-load-test:
+  run-test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Homebrew
-        run: |
-          sudo apt update
-          sudo apt install -y curl git
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      - name: Setup K6
+        uses: grafana/setup-k6-action@v1
 
-      - name: Install k6
-        run: |
-          brew install k6
-          k6 version  # Check if installation was successful
-
-      - name: Verify Load Test File
-        run: ls -l loadtest/ # Debugging step to check if the file exists
-
-      - name: Run Load Test
-        run: k6 run loadtest/loadTest.js
+      - name: Run local k6 test
+        uses: grafana/run-k6-action@v1
+        with:
+          path: loadtest/loadTest.js
