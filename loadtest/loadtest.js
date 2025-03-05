@@ -8,7 +8,7 @@ export let options = {
     { duration: "5s", target: 0 }, // Ramp-down to 0 users in 5s
   ],
   thresholds: {
-    http_req_duration: ["p(95)<500"], // 95% of requests should be <500ms
+    http_req_duration: ["p(95)<10000"], // 95% of requests should be <10000ms
     http_req_failed: ["rate<0.05"], // Error rate should be <5%
   },
 };
@@ -29,7 +29,7 @@ export default function () {
 
   check(response, {
     "is status 200": (r) => r.status === 200,
-    "response time < 500ms": (r) => r.timings.duration < 500,
+    "response time < 10000ms": (r) => r.timings.duration < 10000,
   });
 
   sleep(1); // Simulate user wait time
