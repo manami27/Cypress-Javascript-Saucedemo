@@ -1,22 +1,23 @@
-name: K6 Load Test
+name: Load Test with k6
 
 on:
   workflow_dispatch: # Manual trigger
 
 jobs:
-  load-test:
+  run-load-test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run K6 Load Test
-        uses: grafana/k6-action@v0.2.0
-        with:
-          filename: ./loadtest/loadTest.js
+      - name: Install k6
+        run: |
+          sudo apt update
+          sudo apt install -y k6
 
-      - name: Upload K6 Test Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: k6-results
-          path: results.json
+      - name: Verify Load Test File
+        run: ls -l loadtest/ # Debugging step to check if the file exists
+
+      - name: Run Load Test
+        run: k6 run loadtest/loadTest.js
