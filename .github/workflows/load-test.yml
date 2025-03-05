@@ -10,6 +10,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Debug - List Files
+        run: ls -R # Check if loadTest.js exists
+
       - name: Setup K6
         uses: grafana/setup-k6-action@v1
 
