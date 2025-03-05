@@ -1,29 +1,26 @@
-name: API Test with Cypress
+name: API Test
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch: # Allows manual trigger
+  workflow_dispatch: # Manual trigger
 
 jobs:
-  api-test:
+  run-api-tests:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install Dependencies
+        run: npm ci # Ensures a clean install of all dependencies, including Cypress
 
-      - name: Run Cypress API tests
+      - name: Verify Cypress Installation
+        run: npx cypress verify # Checks if Cypress is installed correctly
+
+      - name: Run API Tests
         run: npx cypress run --spec "cypress/e2e/dummyJsonAPI.cy.js"

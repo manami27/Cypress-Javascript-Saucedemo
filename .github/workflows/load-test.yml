@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Run K6 Load Test
         uses: grafana/k6-action@v0.2.0
@@ -16,7 +16,7 @@ jobs:
           filename: ./loadtest/loadTest.js
 
       - name: Upload K6 Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: k6-results
           path: results.json
