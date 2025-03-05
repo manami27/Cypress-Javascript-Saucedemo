@@ -13,7 +13,7 @@ jobs:
       - name: Run K6 Load Test
         uses: grafana/k6-action@v0.2.0
         with:
-          filename: ./loadTest.js # Ensure this path matches your K6 test script
+          filename: ./loadtest/loadTest.js
 
       - name: Upload K6 Test Results
         uses: actions/upload-artifact@v3

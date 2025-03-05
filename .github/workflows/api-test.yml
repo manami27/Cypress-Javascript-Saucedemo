@@ -26,4 +26,4 @@ jobs:
         run: npm install
 
       - name: Run Cypress API tests
-        run: npx cypress run --spec "cypress/e2e/apiTests.spec.js"
+        run: npx cypress run --spec "cypress/e2e/dummyJsonAPI.cy.js"
