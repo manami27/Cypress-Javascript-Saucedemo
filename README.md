@@ -109,6 +109,20 @@ This repository uses [GitHub Actions](https://docs.github.com/en/actions) for co
   - Select **Cypress Tests** or **Load Tests** workflow.
   - Click **Run workflow**.
 
+📄 **Approach & Reasoning**
+
+This project follows a structured testing approach:
+
+- Page Object Model (POM) for UI Testing:
+  - Separates test logic from UI elements for better maintainability.
+  - ``pageObjects/loginPage.js`` encapsulates login-related actions.
+- Modular API Testing:
+  - API interactions are handled in ``cypress/api/apiLogin.js`` to keep tests clean.
+  - Uses ``cy.request()`` for API calls to ensure direct and fast API validation.
+- Load Testing with K6:
+  - ``loadtest/loadTest.js`` simulates concurrent users.
+  - Integrated with GitHub Actions to automate load testing.
+
 🤝 **Contributing**
 
 1. **Fork the repository**
