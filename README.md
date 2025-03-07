@@ -41,6 +41,8 @@ saucedemo-cypress-test/
 
 ```bash
 git clone https://github.com/manami27/Cypress-Javascript-Saucedemo.git
+```
+```bash
 cd Cypress-Javascript-Saucedemo
 ```
 
@@ -48,6 +50,34 @@ cd Cypress-Javascript-Saucedemo
 
 ```bash
 npm install
+```
+⚠️ **Note on K6 Installation**
+
+K6 is not an npm package. You need to install it separately based on your operating system:
+
+- For Windows (using Chocolatey):
+```bash
+choco install k6
+```
+- For Windows (using Scoop):
+```bash
+scoop install k6
+```
+- For macOS (using Homebrew):
+```bash
+brew install k6
+```
+- For Linux (using apt for Debian/Ubuntu):
+```bash
+sudo apt update
+```
+```bash
+sudo apt install k6
+```
+
+After installation, verify it using:
+```bash
+k6 version
 ```
 
 🧪 **Running Tests**
