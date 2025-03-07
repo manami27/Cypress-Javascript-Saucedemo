@@ -12,10 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^14.1.0",
-    "cypress-xpath": "^2.0.1",
-    "cypress-plugin-api": "^2.8.3"
+    "cypress-plugin-api": "^2.8.3",
+    "cypress-xpath": "^2.0.1"
   },
   "dependencies": {
-    "k6": "^0.44.0"
+    "saucedemocypresstest": "file:"
   }
 }
