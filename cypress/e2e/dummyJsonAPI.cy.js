@@ -1,4 +1,4 @@
-import ApiLoginPage from "../pageObjects/apiLoginPage";
+import ApiLoginPage from "../../api/authAPI";
 
 describe("API Login Tests", () => {
   let validUser, invalidUsers, expiresInMins;

@@ -1,4 +1,4 @@
-class ApiLoginPage {
+class AuthAPI {
   login(username, password, expiresInMins = 60) {
     return cy.request({
       method: "POST",
@@ -9,4 +9,4 @@ class ApiLoginPage {
   }
 }
 
-export default new ApiLoginPage();
+export default new AuthAPI();

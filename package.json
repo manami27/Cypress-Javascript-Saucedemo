@@ -1,18 +1,21 @@
 {
   "name": "saucedemocypresstest",
   "version": "1.0.0",
+  "description": "Cypress automation testing for Saucedemo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:e2e": "cypress run --spec cypress/e2e/saucedemo.cy.js",
+    "test:api": "cypress run --spec cypress/api/dummyJsonAPI.cy.js",
+    "test:load": "k6 run loadtest/loadTest.js"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Maya Maulani",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
-    "cypress": "^14.1.0"
+    "cypress": "^14.1.0",
+    "cypress-xpath": "^2.0.1",
+    "cypress-plugin-api": "^2.8.3"
   },
   "dependencies": {
-    "saucedemocypresstest": "file:"
+    "k6": "^0.44.0"
   }
 }
