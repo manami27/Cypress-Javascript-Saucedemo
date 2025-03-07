@@ -170,8 +170,4 @@ This project follows a structured testing approach:
    ```
 5. **Open a Pull Request 🚀**
 
-🐝 **License**
-
-This project is licensed under the [MIT License](LICENSE).
-
 💡 **Happy Testing! 🚀**
