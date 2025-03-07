@@ -1,111 +1,133 @@
-Saucedemo Cypress Test
+# Saucedemo Cypress Test
 
-📌 Project Overview
+📌 **Project Overview**
 
-This project automates testing for the login functionality of Saucedemo.com using Cypress. It includes End-to-End (E2E) Testing and API Automation Testing using DummyJSON API.
+This project automates testing for the login functionality of [Saucedemo.com](https://www.saucedemo.com) using [Cypress](https://www.cypress.io/). It includes End-to-End (E2E) Testing, API Automation Testing using [DummyJSON API](https://dummyjson.com/), and Load Testing [DummyJSON API](https://dummyjson.com/) using [K6](https://k6.io/).
 
-📂 Folder Structure
+📂 **Folder Structure**
 
+```
 saucedemo-cypress-test/
 │── cypress/
-│ ├── e2e/ # Test cases
-│ │ ├── saucedemo.cy.js # Login tests saucedemo
-| | ├── dummyJsonAPI.cy.js # Login test DummyJson API
-│ ├── pageObjects/ # Page Object Models
-│ │ ├── loginPage.js # Login Page methods
-│ ├── fixtures/ # Test data
-│ │ ├── loginData.json # JSON test data for saucedemo
-│ │ ├── loginDataAPI.json # JSON test data for API
-│ ├── support/ # Custom commands & e2e setup
-│ │ ├── commands.js # Cypress custom commands
-│ │ ├── e2e.js # Global test setup
-│── .github/workflows/ci.yml # GitHub Actions workflow
+│   ├── e2e/ # Test cases
+│   │   ├── saucedemo.cy.js # E2E tests for Saucedemo
+│   │   ├── dummyJsonAPI.cy.js # API tests for DummyJSON API
+│   ├── api/ # API utilities
+│   │   ├── apiLogin.js # API login helper
+│   ├── pageObjects/ # Page Object Models (UI)
+│   │   ├── loginPage.js # UI Login Page methods
+│   ├── fixtures/ # Test data
+│   │   ├── loginData.json # JSON test data for Saucedemo UI
+│   │   ├── loginDataAPI.json # JSON test data for API
+│   ├── support/ # Custom commands & global setup
+│   │   ├── commands.js # Cypress custom commands
+│   │   ├── e2e.js # Global test setup
+│── loadtest/ # Load testing with K6
+│   ├── loadTest.js # K6 load test script
+│── .github/workflows/ # GitHub Actions CI/CD
+│   ├── api-test.yml # Workflow for Cypress API tests
+│   ├── ui-test.yml # Workflow for Cypress UI tests
+│   ├── load-test.yml # Workflow for K6 load tests
+│── .gitignore # Ignored files
 │── package.json # Project dependencies
+│── cypress.config.js # Cypress configuration
 │── README.md # Project documentation
 
-🚀 Installation & Setup
+```
 
-Clone the repository:
+🚀 **Installation & Setup**
 
-git clone https://github.com/your-username/saucedemo-cypress-test.git
-cd saucedemo-cypress-test
+1️⃣ **Clone the repository:**
 
-Install dependencies:
+```bash
+git clone https://github.com/manami27/Cypress-Javascript-Saucedemo.git
+cd Cypress-Javascript-Saucedemo
+```
 
+2️⃣ **Install dependencies:**
+
+```bash
 npm install
+```
 
-Run Cypress tests locally:
+🧪 **Running Tests**
 
+1️⃣ **Run E2E Tests (UI Mode):**
+
+```bash
 npx cypress open
+```
 
 This will open the Cypress Test Runner UI.
 
-🧪 Test Scenarios
+2️⃣ **Run E2E Tests (Headless Mode):**
 
-✅ End-to-End (E2E) Tests
+```bash
+npx cypress run --spec cypress/e2e/saucedemo.cy.js
+```
 
-Login with valid credentials ✅
+3️⃣ **Run API Tests (Headless Mode):**
 
-Login with invalid credentials ❌
+```bash
+npx cypress run --spec cypress/e2e/dummyJsonAPI.cy.js
+```
 
-Check error messages on failure 🛑
+4️⃣ **Run Load Tests (K6):**
 
-🔗 API Automation Tests
+```bash
+k6 run loadtest/loadTest.js
+```
 
-POST Login API → Verify successful login returns a token
+🧪 **Test Scenarios**
 
-Negative Test Cases → Invalid credentials should return an error
+✅ **End-to-End (E2E) Tests**
 
-🚦 Load & Performance Testing
+- Login with valid credentials ✅
+- Login with invalid credentials ❌
+- Check error messages on failure 🛑
 
-50 concurrent users logging in over 30 seconds
+🔗 **API Automation Tests**
 
-Measure response times and error rates
+- **POST Login API** → Verify successful login returns a token
+- **Negative Test Cases** → Invalid credentials should return an error
 
-⚡ Running Tests
+🚦 **Load & Performance Testing**
 
-1️⃣ Run E2E Tests (Headless Mode)
+- 50 concurrent users logging in over 30 seconds
+- Measure response times and error rates
 
-npx cypress run
+🛠 **CI/CD Integration**
 
-2️⃣ Run API Tests (Postman/Newman)
+This repository uses [GitHub Actions](https://docs.github.com/en/actions) for continuous integration.
 
-newman run cypress/e2e/apiTests.postman_collection.json
+**Triggers:** Push, Pull Requests, Manual Workflow Dispatch.
 
-3️⃣ Run Load Tests (K6)
+- Runs Cypress Tests in CI/CD Pipeline.
+- Runs Load Tests in CI/CD Pipeline.
+- To manually trigger a test run in GitHub:
+  - Go to **Actions** tab in the repository.
+  - Select **Cypress Tests** or **Load Tests** workflow.
+  - Click **Run workflow**.
 
-k6 run loadTest.js
+🤝 **Contributing**
 
-🔄 CI/CD Integration
+1. **Fork the repository**
+2. **Create a feature branch:**
+   ```bash
+   git checkout -b feature-name
+   ```
+3. **Commit your changes:**
+   ```bash
+   git commit -m 'Add feature'
+   ```
+4. **Push to the branch:**
+   ```bash
+   git push origin feature-name
+   ```
+5. **Open a Pull Request 🚀**
 
-This project uses GitHub Actions for automation.
+🐝 **License**
 
-Triggers: Push, Pull Requests, Manual Workflow Dispatch
+This project is licensed under the [MIT License](LICENSE).
 
-Runs Cypress Tests in CI/CD Pipeline
-
-To manually trigger a test run in GitHub:
-
-Go to Actions tab in the repository
-
-Select Cypress Tests workflow
-
-Click Run workflow
-
-🤝 Contributing
-
-Fork the repository
-
-Create a feature branch (git checkout -b feature-name)
-
-Commit your changes (git commit -m 'Add feature')
-
-Push to the branch (git push origin feature-name)
-
-Open a Pull Request 🚀
-
-📜 License
-
-This project is licensed under the MIT License.
-
-💡 Happy Testing! 🚀
+💡 **Happy Testing! 🚀**
